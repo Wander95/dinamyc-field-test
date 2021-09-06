@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { io } from 'socket.io-client';
 import { ChakraProvider } from "@chakra-ui/react"
-
-io("https://a095-148-103-70-55.ngrok.io/").connect()
+import Task from './Task';
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
-      <App />
+      <Task />
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
