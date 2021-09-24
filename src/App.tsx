@@ -6,9 +6,6 @@ import { useState } from 'react';
 import { Formik,Form,FieldArray,Field, FormikHelpers,useFormik, FieldProps } from 'formik';
 import * as Yup from 'yup';
 
-import { io } from 'socket.io-client';
-
-const socket = io("http://localhost:4000")
 
 interface testI {
   procedimiento: string;
@@ -29,15 +26,6 @@ export interface IProcedimiento {
 
 function App() {
   
-
-  useEffect(()=>{
-    socket.connect();
-    socket.on("ping",(data)=>{
-      console.log('here we have it',data)
-    })
-
-    socket.emit('pong')
-  },[])
 
   const [ itemsArray,setItemsArray ] = useState([]);
 
@@ -95,8 +83,8 @@ function App() {
             <Form>
               <FieldArray name="procedimientos">
                 {({ insert, remove, push })=>(
-                  
-                  <div>
+                  <>
+                  {  console.log(`object`, values)}
                     {values.procedimientos.length > 0 && 
                     values.procedimientos.map((procedure,index)=>(
                       <Fragment key={index}>
@@ -158,7 +146,7 @@ function App() {
                       codigo: '',
                       procedimiento: '',
                     })}} > Add procedimiento </Button>
-                  </div>
+                  </>
                 )}
               </FieldArray>
 
@@ -169,14 +157,14 @@ function App() {
             <Input width="50"/>
             <Input width="50"/>
             <Input width="50"/>
-          </HStack> */}
-          {/* <HStack mb="5">
+          </HStack>
+          <HStack mb="5">
             <Input width="50"/>
             <Input width="50"/>
             <Input width="50"/>
             <Input width="50"/>
-          </HStack> */}
-          
+          </HStack>
+           */}
         </Formik>
       </header>
     </div>
